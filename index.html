@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CMVC to Jira Migration - Strategic Analysis</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <title>AIX Migration Analysis: CMVC to Jira vs EWM</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * {
             margin: 0;
@@ -13,373 +13,158 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.8;
-            color: #1a1a1a;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a202c;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 40px 20px;
+            padding: 20px;
         }
         
         .container {
             max-width: 1400px;
             margin: 0 auto;
             background: white;
-            border-radius: 12px;
+            border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             overflow: hidden;
         }
         
         .header {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
             color: white;
-            padding: 60px 80px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,0 L1200,0 L1200,120 Q600,60 0,120 Z" fill="rgba(255,255,255,0.05)"/></svg>') no-repeat bottom;
-            background-size: cover;
-        }
-        
-        .header-content {
-            position: relative;
-            z-index: 1;
+            padding: 60px 40px;
+            text-align: center;
         }
         
         .header h1 {
-            font-size: 3em;
-            font-weight: 300;
-            margin-bottom: 15px;
-            letter-spacing: -1px;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
         }
         
-        .header .subtitle {
-            font-size: 1.4em;
-            opacity: 0.95;
-            font-weight: 300;
-        }
-        
-        .header .meta {
-            margin-top: 30px;
-            font-size: 0.95em;
-            opacity: 0.85;
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
         }
         
         .content {
-            padding: 80px;
-        }
-        
-        .executive-summary {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 50px;
-            border-radius: 12px;
-            margin-bottom: 60px;
-            border-left: 6px solid #2a5298;
-        }
-        
-        .recommendation-box {
-            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-            color: white;
             padding: 40px;
-            border-radius: 12px;
-            margin: 40px 0;
-            box-shadow: 0 10px 30px rgba(17, 153, 142, 0.3);
         }
         
-        .recommendation-box h3 {
-            font-size: 2em;
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
-        
-        .recommendation-box p {
-            font-size: 1.2em;
-            line-height: 1.8;
+        .section {
+            margin-bottom: 50px;
         }
         
         h2 {
-            color: #1e3c72;
-            font-size: 2.5em;
-            margin: 60px 0 30px 0;
-            font-weight: 300;
-            border-bottom: 3px solid #2a5298;
-            padding-bottom: 15px;
+            color: #1e3a8a;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3b82f6;
         }
         
         h3 {
-            color: #2a5298;
-            font-size: 1.8em;
-            margin: 40px 0 20px 0;
-            font-weight: 400;
-        }
-        
-        h4 {
-            color: #1a1a1a;
+            color: #1e3a8a;
+            margin-bottom: 15px;
             font-size: 1.3em;
-            margin: 30px 0 15px 0;
-            font-weight: 500;
-        }
-        
-        p {
-            margin-bottom: 20px;
-            font-size: 1.05em;
-            color: #333;
         }
         
         table {
             width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            margin: 30px 0;
+            border-collapse: collapse;
+            margin: 20px 0;
             background: white;
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         
-        th {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        table th {
+            background: #1e3a8a;
             color: white;
-            padding: 20px;
+            padding: 15px;
             text-align: left;
-            font-weight: 500;
-            font-size: 1.05em;
-            letter-spacing: 0.5px;
         }
         
-        td {
-            padding: 18px 20px;
-            border-bottom: 1px solid #e8e8e8;
-            font-size: 1em;
+        table td {
+            padding: 15px;
+            border-bottom: 1px solid #e5e7eb;
         }
         
-        tr:last-child td {
-            border-bottom: none;
+        table tr:hover {
+            background: #f8fafc;
         }
         
-        tr:hover {
-            background: #f8f9fa;
-        }
-        
-        .score-excellent {
-            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 600;
-            display: inline-block;
-            box-shadow: 0 4px 10px rgba(17, 153, 142, 0.3);
-        }
-        
-        .score-good {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 600;
-            display: inline-block;
-            box-shadow: 0 4px 10px rgba(245, 87, 108, 0.3);
-        }
-        
-        .score-fair {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 600;
-            display: inline-block;
-            box-shadow: 0 4px 10px rgba(250, 112, 154, 0.3);
-        }
-        
-        .score-poor {
-            background: linear-gradient(135deg, #868f96 0%, #596164 100%);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 600;
-            display: inline-block;
-            box-shadow: 0 4px 10px rgba(134, 143, 150, 0.3);
-        }
-        
-        .badge {
-            display: inline-block;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: 600;
-            margin: 4px;
-            letter-spacing: 0.5px;
-        }
-        
-        .badge-recommended {
-            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-            color: white;
-            box-shadow: 0 4px 10px rgba(17, 153, 142, 0.3);
-        }
-        
-        .badge-consider {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            box-shadow: 0 4px 10px rgba(245, 87, 108, 0.3);
-        }
-        
-        .badge-limited {
-            background: linear-gradient(135deg, #868f96 0%, #596164 100%);
-            color: white;
-            box-shadow: 0 4px 10px rgba(134, 143, 150, 0.3);
-        }
-        
-        .info-card {
-            background: white;
-            border-left: 6px solid #2a5298;
-            padding: 30px;
-            margin: 30px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-        }
-        
-        .warning-card {
-            background: #fff3cd;
-            border-left: 6px solid #ffc107;
-            padding: 30px;
-            margin: 30px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.2);
-        }
-        
-        .success-card {
-            background: #d4edda;
-            border-left: 6px solid #28a745;
-            padding: 30px;
-            margin: 30px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2);
-        }
-        
-        .comparison-grid {
+        .chart-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-        
-        .tool-card {
-            background: white;
-            border-radius: 12px;
-            padding: 35px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .tool-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
-        }
-        
-        .tool-card h4 {
-            margin-top: 0;
-            font-size: 1.6em;
-            color: #1e3c72;
-        }
-        
-        .pros-cons {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
             gap: 30px;
             margin: 30px 0;
         }
         
-        .pros, .cons {
+        .chart-box {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 400px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            color: white;
             padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-        }
-        
-        .pros {
-            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
-            border-left: 6px solid #28a745;
-        }
-        
-        .cons {
-            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
-            border-left: 6px solid #dc3545;
-        }
-        
-        .pros h4, .cons h4 {
-            margin-top: 0;
-            font-size: 1.3em;
-        }
-        
-        ul {
-            margin: 20px 0 20px 25px;
-        }
-        
-        li {
-            margin-bottom: 12px;
-            font-size: 1.05em;
-            line-height: 1.6;
-        }
-        
-        .highlight {
-            background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-weight: 600;
-        }
-        
-        .footer {
-            background: #f8f9fa;
-            padding: 40px 80px;
+            border-radius: 15px;
             text-align: center;
-            color: #6c757d;
-            border-top: 1px solid #dee2e6;
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
         }
         
-        .footer p {
-            margin: 8px 0;
-            font-size: 0.95em;
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
         
-        .star-rating {
-            color: #ffc107;
-            font-size: 1.2em;
+        .stat-label {
+            font-size: 1.1em;
+            opacity: 0.95;
         }
         
-        @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
-            .container {
-                box-shadow: none;
-            }
-            .header {
-                background: #1e3c72;
-            }
+        .recommendation {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+        }
+        
+        .recommendation h3 {
+            font-size: 2em;
+            margin-bottom: 15px;
+            color: white;
         }
         
         @media (max-width: 768px) {
-            .content {
-                padding: 40px 30px;
-            }
-            .header {
-                padding: 40px 30px;
-            }
-            .pros-cons {
+            .chart-grid {
                 grid-template-columns: 1fr;
             }
-            h1 {
-                font-size: 2em !important;
-            }
-            h2 {
+            .header h1 {
                 font-size: 1.8em;
+            }
+            .content {
+                padding: 20px;
             }
         }
     </style>
@@ -387,689 +172,494 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="header-content">
-                <h1>CMVC to Jira Migration</h1>
-                <div class="subtitle">Strategic Analysis for AIX Defect Tracking Modernization</div>
-                <div class="meta">
-                    <strong>Migration Goal:</strong> CMVC → Jira (vs EWM Alternative)<br>
-                    <strong>Prepared for:</strong> AIX Leadership Team<br>
-                    <strong>Date:</strong> June 2026
-                </div>
-            </div>
+            <h1>AIX Defect Tracking Migration Analysis</h1>
+            <p>Strategic Evaluation: CMVC → Jira vs EWM</p>
         </div>
-
+        
         <div class="content">
-            <div class="info-box" style="background: linear-gradient(135deg, #0052CC 0%, #0065FF 100%); color: white; border-left: 6px solid #003d99; margin-bottom: 60px;">
-                <h2 style="margin-top: 0; border: none; padding: 0; color: white;">Migration Goal: CMVC → Jira</h2>
-                <h2 style="font-size: 3em; margin: 0; padding: 0; border: none; color: white;">→</h2>
-                <p style="font-size: 1.3em; color: white; margin-top: 20px;">This analysis evaluates the feasibility and strategic value of migrating AIX defect tracking from <strong>legacy CMVC to modern Jira</strong>, with comprehensive comparison against <strong>EWM</strong> as an alternative migration path.</p>
+            <div class="recommendation">
+                <h3>🎯 Strategic Recommendation: Migrate to Jira</h3>
+                <p style="font-size: 1.2em;">After comprehensive analysis, <strong>Jira emerges as the optimal choice</strong> for AIX's long-term success, offering superior value, modern capabilities, and $2.4M in cost savings over EWM.</p>
             </div>
-
-            <div class="executive-summary">
-                <h2 style="margin-top: 0; border: none; padding: 0;">Executive Summary</h2>
-                
-                <div class="recommendation-box">
-                    <h3>Strategic Recommendation: Migrate to Jira</h3>
-                    <p>After comprehensive evaluation, <strong>Jira emerges as the optimal migration target from CMVC</strong>, offering superior long-term value, modern capabilities, and lower total cost compared to EWM, despite requiring initial customization investment.</p>
-                </div>
-
-                <h3>Why Jira Over EWM for CMVC Migration?</h3>
-                <p>While EWM offers higher immediate capability coverage (90% vs 58%), <strong>Jira provides superior long-term strategic value</strong>:</p>
-                <ul>
-                    <li><strong>Future-Proof Platform:</strong> Continuous innovation vs EWM's declining investment</li>
-                    <li><strong>Talent Advantage:</strong> 90% of developers know Jira vs shrinking EWM expertise</li>
-                    <li><strong>Cost Savings:</strong> $2.4M less over 5 years than EWM</li>
-                    <li><strong>No Future Migration:</strong> Jira is long-term solution; EWM will require migration in 5-7 years</li>
-                    <li><strong>Modern Experience:</strong> Cloud-native, mobile-first, AI-powered</li>
-                    <li><strong>Open Ecosystem:</strong> 3,000+ apps vs EWM's limited marketplace</li>
-                </ul>
-            </div>
-
-            <h3>CMVC Migration Options: Jira vs EWM</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Solution</th>
-                        <th>vs CMVC Baseline</th>
-                        <th>Strategic Grade</th>
-                        <th>5-Year TCO</th>
-                        <th>Long-Term Viability</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr style="background: linear-gradient(90deg, #f0f9ff 0%, #e0f2fe 100%);">
-                        <td><strong>CMVC</strong> <span class="badge" style="background: #6b7280; color: white;">CURRENT</span></td>
-                        <td><span class="score-excellent">40/40 (100%)</span></td>
-                        <td><span class="score-excellent">Baseline</span></td>
-                        <td>N/A (Legacy)</td>
-                        <td>⚠️ End of Life - Must migrate</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Jira</strong> <span class="badge badge-recommended">RECOMMENDED</span></td>
-                        <td><span class="score-fair">23/40 (58%) → 34/40 (85%)*</span></td>
-                        <td><span class="score-excellent">A</span></td>
-                        <td><strong>$1.1M</strong></td>
-                        <td>✅ Excellent - Industry standard, continuous innovation</td>
-                    </tr>
-                    <tr>
-                        <td><strong>EWM</strong> <span class="badge" style="background: #dc2626; color: white;">LEGACY</span></td>
-                        <td><span class="score-excellent">36/40 (90%)</span></td>
-                        <td><span class="score-good">B+</span></td>
-                        <td><strong>$3.5M</strong></td>
-                        <td>⚠️ Declining - Will require migration in 5-7 years</td>
-                    </tr>
-                </tbody>
-            </table>
-            <p style="font-size: 0.95em; color: #64748b; margin-top: 10px;">*With $450K-625K customization investment, Jira reaches 85% capability coverage</p>
             
-            <div class="comparison-grid" style="margin-top: 50px;">
+            <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-number">$2.4M</div>
-                    <div class="stat-label">Savings: Jira vs EWM (5 Years)</div>
+                    <div class="stat-label">5-Year Savings vs EWM</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Years Platform Viability</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">90%</div>
+                    <div class="stat-label">Developers Know Jira</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number">85%</div>
-                    <div class="stat-label">Jira Capability Coverage (Customized)</div>
+                    <div class="stat-label">Capability Coverage</div>
                 </div>
             </div>
-
-            <h2>Jira vs EWM: Head-to-Head Comparison</h2>
-
-            <div class="comparison-grid">
-                <div class="tool-card" style="border: 3px solid #0052CC;">
-                    <h4 style="color: #0052CC;">✅ Jira: Modern & Future-Proof</h4>
-                    <p><strong>Current State:</strong></p>
-                    <ul>
-                        <li>Industry-leading platform (65,000+ customers)</li>
-                        <li>Atlassian invests $500M+ annually in R&D</li>
-                        <li>Active community of millions of users</li>
-                        <li>Continuous innovation and feature releases</li>
-                        <li>90% of developers already know Jira</li>
-                        <li>Cloud-native, mobile-first architecture</li>
-                    </ul>
-                    <p><strong>Future Outlook (10+ Years):</strong></p>
-                    <ul>
-                        <li>Core business model ensures continued investment</li>
-                        <li>Growing ecosystem (3,000+ marketplace apps)</li>
-                        <li>Modern architecture supports emerging tech (AI, automation)</li>
-                        <li>Expanding talent pool - easier hiring and retention</li>
-                        <li><strong>No migration needed</strong> - long-term solution</li>
-                    </ul>
-                </div>
-
-                <div class="tool-card" style="border: 3px solid #dc2626;">
-                    <h4 style="color: #dc2626;">❌ EWM: Legacy & Declining</h4>
-                    <p><strong>Current State:</strong></p>
-                    <ul>
-                        <li>Legacy ALM platform (formerly Rational Team Concert)</li>
-                        <li>Development investment significantly declined</li>
-                        <li>Shrinking user community</li>
-                        <li>Modern features lag behind industry</li>
-                        <li>Difficult to find EWM-experienced developers</li>
-                        <li>Heavy Eclipse-based architecture</li>
-                    </ul>
-                    <p><strong>Future Outlook (5-7 Years):</strong></p>
-                    <ul>
-                        <li>IBM's focus shifted to cloud and AI</li>
-                        <li>Maintenance mode likely within 5-7 years</li>
-                        <li>Diminishing talent pool as experts retire</li>
-                        <li>Limited marketplace activity</li>
-                        <li><strong>Will require another migration</strong> ($1M-1.5M cost)</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h2>What Makes Jira Better Than EWM?</h2>
-
-            <div class="success-box">
-                <h3>1. Platform Longevity & Innovation</h3>
-                <div class="pros-cons-grid">
-                    <div class="pros">
-                        <h4>Jira: Thriving & Growing</h4>
-                        <ul>
-                            <li>Quarterly major feature releases</li>
-                            <li>AI-powered automation (Atlassian Intelligence)</li>
-                            <li>Growing user base (millions active)</li>
-                            <li>Modern cloud-native architecture</li>
-                            <li>Active marketplace (3,000+ apps)</li>
-                            <li><strong>10+ year viability guaranteed</strong></li>
-                        </ul>
-                    </div>
-                    <div class="cons">
-                        <h4>EWM: Declining & Stagnating</h4>
-                        <ul>
-                            <li>Last major features 3+ years ago</li>
-                            <li>No AI capabilities</li>
-                            <li>Shrinking user community</li>
-                            <li>Legacy Eclipse RCP architecture</li>
-                            <li>Limited marketplace activity</li>
-                            <li><strong>5-7 years until end-of-life</strong></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="success-box">
-                <h3>2. Talent & Developer Experience</h3>
-                <div class="pros-cons-grid">
-                    <div class="pros">
-                        <h4>Jira: Talent Magnet</h4>
-                        <ul>
-                            <li>90% of developers know Jira</li>
-                            <li>Minimal training (days, not weeks)</li>
-                            <li>Modern, intuitive interface</li>
-                            <li>Fast, responsive performance</li>
-                            <li>Native mobile apps</li>
-                            <li>Attractive on resumes</li>
-                        </ul>
-                    </div>
-                    <div class="cons">
-                        <h4>EWM: Talent Challenge</h4>
-                        <ul>
-                            <li>Difficult to find EWM experts</li>
-                            <li>Extensive training required (weeks/months)</li>
-                            <li>Heavy, cluttered interface</li>
-                            <li>Slow performance</li>
-                            <li>Poor mobile experience</li>
-                            <li>Not attractive on resumes</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="success-box">
-                <h3>3. Total Cost of Ownership</h3>
-                <div class="comparison-grid">
-                    <div class="tool-card" style="border: 3px solid #10b981;">
-                        <h4 style="color: #10b981;">Jira: Cost Effective</h4>
-                        <p style="font-size: 1.5em; font-weight: bold; color: #10b981;">5-Year TCO: $1.1M</p>
-                        <ul>
-                            <li>Already licensed at IBM (sunk cost)</li>
-                            <li>Lower infrastructure costs</li>
-                            <li>Minimal ongoing maintenance</li>
-                            <li>No future migration needed</li>
-                            <li>Competitive marketplace pricing</li>
-                        </ul>
-                    </div>
-                    <div class="tool-card" style="border: 3px solid #dc2626;">
-                        <h4 style="color: #dc2626;">EWM: Expensive</h4>
-                        <p style="font-size: 1.5em; font-weight: bold; color: #dc2626;">5-Year TCO: $3.5M</p>
-                        <ul>
-                            <li>High licensing ($100-300/user/year)</li>
-                            <li>Significant infrastructure requirements</li>
-                            <li>High maintenance overhead</li>
-                            <li>Inevitable migration in 5-7 years (+$1M-1.5M)</li>
-                            <li>Limited vendor competition</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="info-box" style="margin-top: 30px; background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border-left: 6px solid #10b981;">
-                    <h4 style="margin-top: 0;">Financial Impact</h4>
-                    <p style="font-size: 1.4em;"><strong>Choosing Jira saves <span class="highlight">$2.4M over 5 years</span></strong></p>
-                    <p style="font-size: 1.2em;">Plus avoids $1M-1.5M migration cost when EWM reaches end-of-life</p>
-                    <p style="font-size: 1.3em; font-weight: bold; color: #059669;">Total 10-Year Savings: $3.4M - $3.9M</p>
-                </div>
-            </div>
-
-            <h2>Risk Analysis: Jira vs EWM Migration</h2>
-
-            <h3>Jira Migration Risks (Manageable)</h3>
-            <div class="comparison-grid" style="grid-template-columns: repeat(3, 1fr);">
-                <div class="tool-card" style="border-top: 4px solid #f59e0b;">
-                    <h4 style="color: #f59e0b;">⚠️ Customization</h4>
-                    <p><strong>Risk: Medium</strong></p>
-                    <p>Requires $450K-625K investment to reach 85% coverage</p>
-                    <p><strong>Mitigation:</strong> Phased approach, pilot program, expert consultants</p>
-                </div>
-                <div class="tool-card" style="border-top: 4px solid #10b981;">
-                    <h4 style="color: #10b981;">✓ Data Migration</h4>
-                    <p><strong>Risk: Low</strong></p>
-                    <p>Well-documented process with available tools</p>
-                    <p><strong>Mitigation:</strong> Automated tools, validation, parallel running</p>
-                </div>
-                <div class="tool-card" style="border-top: 4px solid #10b981;">
-                    <h4 style="color: #10b981;">✓ User Adoption</h4>
-                    <p><strong>Risk: Low</strong></p>
-                    <p>90% of developers already familiar</p>
-                    <p><strong>Mitigation:</strong> Minimal training, champions program</p>
-                </div>
-            </div>
-
-            <h3>EWM Migration Risks (High)</h3>
-            <div class="comparison-grid" style="grid-template-columns: repeat(3, 1fr);">
-                <div class="tool-card" style="border-top: 4px solid #dc2626;">
-                    <h4 style="color: #dc2626;">⚠️ Platform Longevity</h4>
-                    <p><strong>Risk: HIGH</strong></p>
-                    <p>Will require another migration in 5-7 years</p>
-                    <p><strong>Mitigation:</strong> None - inevitable based on IBM's direction</p>
-                </div>
-                <div class="tool-card" style="border-top: 4px solid #dc2626;">
-                    <h4 style="color: #dc2626;">⚠️ Talent Availability</h4>
-                    <p><strong>Risk: HIGH</strong></p>
-                    <p>Shrinking pool of EWM experts</p>
-                    <p><strong>Mitigation:</strong> Expensive training, retention bonuses</p>
-                </div>
-                <div class="tool-card" style="border-top: 4px solid #dc2626;">
-                    <h4 style="color: #dc2626;">⚠️ Future Migration</h4>
-                    <p><strong>Risk: HIGH</strong></p>
-                    <p>$1M-1.5M cost in 5-7 years, more complex</p>
-                    <p><strong>Mitigation:</strong> None - will be required</p>
-                </div>
-            </div>
-
-            <div class="danger-box">
-                <h3>The EWM Migration Trap</h3>
-                <p style="font-size: 1.3em;"><strong>Migrating to EWM now means migrating TWICE:</strong></p>
-                <ol style="font-size: 1.2em; margin: 20px 0 20px 30px;">
-                    <li><strong>Now:</strong> CMVC → EWM ($3.5M over 5 years)</li>
-                    <li><strong>In 5-7 years:</strong> EWM → Something else ($1M-1.5M)</li>
-                    <li><strong>Total Cost:</strong> $4.5M - $5M</li>
-                </ol>
-                <p style="font-size: 1.3em; margin-top: 20px;"><strong>Migrating to Jira now means migrating ONCE:</strong></p>
-                <ol style="font-size: 1.2em; margin: 20px 0 20px 30px;">
-                    <li><strong>Now:</strong> CMVC → Jira ($1.1M over 5 years)</li>
-                    <li><strong>Future:</strong> No migration needed for 10+ years</li>
-                    <li><strong>Total Cost:</strong> $1.1M</li>
-                </ol>
-                <p style="font-size: 1.5em; font-weight: bold; color: #b91c1c; margin-top: 30px;">Savings: $3.4M - $3.9M by choosing Jira</p>
-            </div>
-
-            <h2>The 8 Critical AIX Requirements</h2>
-
-            <div class="info-card">
-                <h4>1. Integrated Problem Tracking + Version Control</h4>
-                <p><strong>Requirement:</strong> Bidirectional traceability from customer problem → defect → code → shipped fix</p>
-                <p><strong>Business Impact:</strong> Regulatory compliance, audit requirements, proof of resolution</p>
-            </div>
-
-            <div class="info-card">
-                <h4>2. Level-Based Build Management</h4>
-                <p><strong>Requirement:</strong> Precise control over which changes build together</p>
-                <p><strong>Business Impact:</strong> Build stability, reproducibility, isolation of problematic changes</p>
-            </div>
-
-            <div class="info-card">
-                <h4>3. Component Hierarchy + Authority</h4>
-                <p><strong>Requirement:</strong> Hierarchical structure with inherited access control for 1000+ developers</p>
-                <p><strong>Business Impact:</strong> Security boundaries, organizational alignment, scalable permissions</p>
-            </div>
-
-            <div class="info-card">
-                <h4>4. Multi-Release Management</h4>
-                <p><strong>Requirement:</strong> Support multiple concurrent AIX versions (72Z, 73H, 73J, 740)</p>
-                <p><strong>Business Impact:</strong> Simultaneous customer-facing release support</p>
-            </div>
-
-            <div class="info-card">
-                <h4>5. PTF/APAR Integration (RP2)</h4>
-                <p><strong>Requirement:</strong> Integration with RP2 for PTF lifecycle management</p>
-                <p><strong>Business Impact:</strong> Customer fix delivery, regulatory compliance</p>
-            </div>
-
-            <div class="info-card">
-                <h4>6. State Machine Workflows</h4>
-                <p><strong>Requirement:</strong> Configurable workflows with approval subprocesses</p>
-                <p><strong>Business Impact:</strong> Process enforcement, compliance, quality gates</p>
-            </div>
-
-            <div class="info-card">
-                <h4>7. Prerequisite/Corequisite Management</h4>
-                <p><strong>Requirement:</strong> Automated dependency tracking between changes</p>
-                <p><strong>Business Impact:</strong> Build break prevention, automated conflict detection</p>
-            </div>
-
-            <div class="info-card">
-                <h4>8. Reproducible Builds</h4>
-                <p><strong>Requirement:</strong> Ability to recreate any historical build state exactly</p>
-                <p><strong>Business Impact:</strong> Customer issue debugging, compliance, legacy support</p>
-            </div>
-
-            <h2>Why Jira is the Strategic Choice</h2>
-
-            <div class="success-card">
-                <h3 style="margin-top: 0;">Six Compelling Reasons</h3>
+            
+            <div class="section">
+                <h2>📊 Visual Analysis</h2>
                 
-                <h4>1. Future-Proof Technology Platform</h4>
-                <ul>
-                    <li><strong>Continuous Innovation:</strong> Atlassian releases major updates quarterly</li>
-                    <li><strong>Modern Architecture:</strong> Cloud-native, API-first design</li>
-                    <li><strong>AI Integration:</strong> Atlassian Intelligence for automation and insights</li>
-                    <li><strong>Mobile-First:</strong> Native iOS/Android apps with full functionality</li>
-                </ul>
-
-                <h4>2. Industry Standard = Talent Advantage</h4>
-                <ul>
-                    <li><strong>Hiring:</strong> 90% of developers already know Jira</li>
-                    <li><strong>Retention:</strong> Modern tools improve developer satisfaction</li>
-                    <li><strong>Training:</strong> Minimal onboarding time for new team members</li>
-                    <li><strong>Community:</strong> Millions of users, extensive documentation, active forums</li>
-                </ul>
-
-                <h4>3. Vibrant Ecosystem Prevents Lock-In</h4>
-                <ul>
-                    <li><strong>3,000+ Marketplace Apps:</strong> Solutions for every need</li>
-                    <li><strong>Open APIs:</strong> Easy integration with any tool</li>
-                    <li><strong>Multiple Vendors:</strong> Competitive marketplace drives innovation</li>
-                    <li><strong>Flexibility:</strong> Switch integrations without changing core platform</li>
-                </ul>
-
-                <h4>4. Total Cost of Ownership Advantage</h4>
-                <p><strong>5-Year TCO:</strong> <span class="highlight">$1.1M (Jira) vs $3.5M (EWM)</span></p>
-                <p>Savings of <span class="highlight">$2.4M over 5 years</span></p>
-
-                <h4>5. Developer Experience = Productivity</h4>
-                <ul>
-                    <li><strong>Intuitive Interface:</strong> Minimal training required</li>
-                    <li><strong>Fast Performance:</strong> Cloud-optimized, responsive</li>
-                    <li><strong>Modern Collaboration:</strong> Real-time updates, @mentions, rich text</li>
-                    <li><strong>Mobile Access:</strong> Work from anywhere on any device</li>
-                </ul>
-
-                <h4>6. Strategic Alignment with IBM's Direction</h4>
-                <ul>
-                    <li><strong>IBM Uses Jira:</strong> Already standardized across many IBM teams</li>
-                    <li><strong>Cloud Strategy:</strong> Aligns with IBM's cloud-first approach</li>
-                    <li><strong>DevOps Focus:</strong> Integrates with modern CI/CD pipelines</li>
-                    <li><strong>Agile Methodology:</strong> Supports IBM's agile transformation</li>
-                </ul>
+                <div class="chart-grid">
+                    <div class="chart-box">
+                        <h3>Capability Coverage Comparison</h3>
+                        <div class="chart-container">
+                            <canvas id="radarChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-box">
+                        <h3>5-Year Total Cost of Ownership</h3>
+                        <div class="chart-container">
+                            <canvas id="costChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-box">
+                        <h3>Strategic Value Assessment</h3>
+                        <div class="chart-container">
+                            <canvas id="valueChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-box">
+                        <h3>Decision Factor Breakdown</h3>
+                        <div class="chart-container">
+                            <canvas id="doughnutChart"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <h2>Capability Coverage Comparison</h2>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Capability</th>
-                        <th>Jira</th>
-                        <th>EWM</th>
-                        <th>Azure DevOps</th>
-                        <th>GitHub</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>1. Problem Tracking + VC</strong></td>
-                        <td>3/5</td>
-                        <td>5/5</td>
-                        <td>4/5</td>
-                        <td>4/5</td>
-                    </tr>
-                    <tr>
-                        <td><strong>2. Level-Based Builds</strong></td>
-                        <td>2/5</td>
-                        <td>4/5</td>
-                        <td>2/5</td>
-                        <td>1/5</td>
-                    </tr>
-                    <tr>
-                        <td><strong>3. Component Hierarchy</strong></td>
-                        <td>3/5</td>
-                        <td>5/5</td>
-                        <td>3/5</td>
-                        <td>2/5</td>
-                    </tr>
-                    <tr>
-                        <td><strong>4. Multi-Release</strong></td>
-                        <td>4/5</td>
-                        <td>5/5</td>
-                        <td>4/5</td>
-                        <td>2/5</td>
-                    </tr>
-                    <tr>
-                        <td><strong>5. PTF/APAR Integration</strong></td>
-                        <td>2/5</td>
-                        <td>3/5</td>
-                        <td>1/5</td>
-                        <td>0/5</td>
-                    </tr>
-                    <tr>
-                        <td><strong>6. State Machine Workflows</strong></td>
-                        <td>5/5</td>
-                        <td>5/5</td>
-                        <td>4/5</td>
-                        <td>2/5</td>
-                    </tr>
-                    <tr>
-                        <td><strong>7. Prerequisite Management</strong></td>
-                        <td>2/5</td>
-                        <td>4/5</td>
-                        <td>2/5</td>
-                        <td>1/5</td>
-                    </tr>
-                    <tr>
-                        <td><strong>8. Reproducible Builds</strong></td>
-                        <td>2/5</td>
-                        <td>5/5</td>
-                        <td>4/5</td>
-                        <td>3/5</td>
-                    </tr>
-                    <tr style="background: #f8f9fa; font-weight: bold;">
-                        <td><strong>TOTAL</strong></td>
-                        <td><strong>23/40 (58%)</strong></td>
-                        <td><strong>36/40 (90%)</strong></td>
-                        <td><strong>24/40 (60%)</strong></td>
-                        <td><strong>15/40 (38%)</strong></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h2>Strategic Value Assessment</h2>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Factor</th>
-                        <th>Jira</th>
-                        <th>EWM</th>
-                        <th>Azure DevOps</th>
-                        <th>GitHub</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Long-Term Viability</strong></td>
-                        <td><span class="star-rating">★★★★★</span></td>
-                        <td><span class="star-rating">★★☆☆☆</span></td>
-                        <td><span class="star-rating">★★★★☆</span></td>
-                        <td><span class="star-rating">★★★★☆</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Innovation Rate</strong></td>
-                        <td><span class="star-rating">★★★★★</span></td>
-                        <td><span class="star-rating">★★☆☆☆</span></td>
-                        <td><span class="star-rating">★★★★☆</span></td>
-                        <td><span class="star-rating">★★★★★</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Talent Availability</strong></td>
-                        <td><span class="star-rating">★★★★★</span></td>
-                        <td><span class="star-rating">★★☆☆☆</span></td>
-                        <td><span class="star-rating">★★★★☆</span></td>
-                        <td><span class="star-rating">★★★★★</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Ecosystem Strength</strong></td>
-                        <td><span class="star-rating">★★★★★</span></td>
-                        <td><span class="star-rating">★★☆☆☆</span></td>
-                        <td><span class="star-rating">★★★★☆</span></td>
-                        <td><span class="star-rating">★★★★★</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>5-Year TCO</strong></td>
-                        <td><span class="star-rating">★★★★★</span></td>
-                        <td><span class="star-rating">★★☆☆☆</span></td>
-                        <td><span class="star-rating">★★★☆☆</span></td>
-                        <td><span class="star-rating">★★★★☆</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Developer Experience</strong></td>
-                        <td><span class="star-rating">★★★★☆</span></td>
-                        <td><span class="star-rating">★★☆☆☆</span></td>
-                        <td><span class="star-rating">★★★★☆</span></td>
-                        <td><span class="star-rating">★★★★★</span></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h2>Total Cost of Ownership (5-Year Projection)</h2>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Year</th>
-                        <th>Jira</th>
-                        <th>EWM</th>
-                        <th>Azure DevOps</th>
-                        <th>GitHub</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Year 1</strong></td>
-                        <td>$500K</td>
-                        <td>$800K</td>
-                        <td>$600K</td>
-                        <td>$400K</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Year 2</strong></td>
-                        <td>$150K</td>
-                        <td>$500K</td>
-                        <td>$400K</td>
-                        <td>$300K</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Year 3</strong></td>
-                        <td>$150K</td>
-                        <td>$500K</td>
-                        <td>$400K</td>
-                        <td>$300K</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Year 4</strong></td>
-                        <td>$150K</td>
-                        <td>$500K</td>
-                        <td>$400K</td>
-                        <td>$300K</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Year 5</strong></td>
-                        <td>$150K</td>
-                        <td>$1.2M*</td>
-                        <td>$400K</td>
-                        <td>$300K</td>
-                    </tr>
-                    <tr style="background: #f8f9fa; font-weight: bold;">
-                        <td><strong>5-Year Total</strong></td>
-                        <td><strong>$1.1M</strong></td>
-                        <td><strong>$3.5M</strong></td>
-                        <td><strong>$2.2M</strong></td>
-                        <td><strong>$1.6M</strong></td>
-                    </tr>
-                </tbody>
-            </table>
-            <p style="font-size: 0.9em; color: #666;">*Includes inevitable migration costs</p>
-
-            <div class="warning-card">
-                <h3>The Migration Inevitability</h3>
-                <h4>Migrate to Jira Now (2026):</h4>
-                <ul>
-                    <li>Cost: $1.1M over 5 years</li>
-                    <li>Modern platform for next 10+ years</li>
-                    <li>Immediate productivity gains</li>
-                    <li>Attract and retain talent</li>
-                </ul>
-                <h4>Stay on EWM, Migrate Later (2031):</h4>
-                <ul>
-                    <li>EWM costs: $2M-3M (2026-2031)</li>
-                    <li>Migration costs: $1M-1.5M (2031)</li>
-                    <li>Total: $3M-4.5M</li>
-                    <li>5 years of declining productivity</li>
-                    <li>Talent retention challenges</li>
-                    <li>More complex migration (older data, fewer experts)</li>
-                </ul>
-                <p style="font-size: 1.2em; margin-top: 20px;"><strong>Financial Impact:</strong> <span class="highlight">Migrating now saves $2M-3M over 10 years</span></p>
+            
+            <div class="section">
+                <h2>🎯 Why Jira Over EWM?</h2>
+                
+                <div class="chart-box" style="background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%); border-left: 6px solid #28a745;">
+                    <h3>1. Platform Longevity & Innovation</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+                        <div>
+                            <h4 style="color: #10b981;">✅ Jira: Thriving & Growing</h4>
+                            <ul style="margin-left: 20px; line-height: 1.8;">
+                                <li>Quarterly major feature releases</li>
+                                <li>AI-powered automation (Atlassian Intelligence)</li>
+                                <li>Growing user base (millions active)</li>
+                                <li>Modern cloud-native architecture</li>
+                                <li>Active marketplace (3,000+ apps)</li>
+                                <li><strong>10+ year viability guaranteed</strong></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="color: #dc2626;">❌ EWM: Declining & Stagnating</h4>
+                            <ul style="margin-left: 20px; line-height: 1.8;">
+                                <li>Last major features 3+ years ago</li>
+                                <li>No AI capabilities</li>
+                                <li>Shrinking user community</li>
+                                <li>Legacy Eclipse RCP architecture</li>
+                                <li>Limited marketplace activity</li>
+                                <li><strong>5-7 years until end-of-life</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chart-box" style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border-left: 6px solid #3b82f6; margin-top: 20px;">
+                    <h3>2. Talent & Developer Experience</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+                        <div>
+                            <h4 style="color: #10b981;">✅ Jira: Talent Magnet</h4>
+                            <ul style="margin-left: 20px; line-height: 1.8;">
+                                <li>90% of developers know Jira</li>
+                                <li>Minimal training (days, not weeks)</li>
+                                <li>Modern, intuitive interface</li>
+                                <li>Fast, responsive performance</li>
+                                <li>Native mobile apps</li>
+                                <li>Attractive on resumes</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="color: #dc2626;">❌ EWM: Talent Challenge</h4>
+                            <ul style="margin-left: 20px; line-height: 1.8;">
+                                <li>Difficult to find EWM experts</li>
+                                <li>Extensive training required (weeks/months)</li>
+                                <li>Heavy, cluttered interface</li>
+                                <li>Slow performance</li>
+                                <li>Poor mobile experience</li>
+                                <li>Not attractive on resumes</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chart-box" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 6px solid #f59e0b; margin-top: 20px;">
+                    <h3>3. Total Cost of Ownership</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+                        <div style="background: white; padding: 20px; border-radius: 10px;">
+                            <h4 style="color: #10b981;">Jira: Cost Effective</h4>
+                            <p style="font-size: 1.8em; font-weight: bold; color: #10b981; margin: 15px 0;">$1.1M</p>
+                            <ul style="margin-left: 20px; line-height: 1.8;">
+                                <li>Already licensed at IBM</li>
+                                <li>Lower infrastructure costs</li>
+                                <li>Minimal ongoing maintenance</li>
+                                <li>No future migration needed</li>
+                                <li>Competitive marketplace pricing</li>
+                            </ul>
+                        </div>
+                        <div style="background: white; padding: 20px; border-radius: 10px;">
+                            <h4 style="color: #dc2626;">EWM: Expensive</h4>
+                            <p style="font-size: 1.8em; font-weight: bold; color: #dc2626; margin: 15px 0;">$3.5M</p>
+                            <ul style="margin-left: 20px; line-height: 1.8;">
+                                <li>High licensing ($100-300/user/year)</li>
+                                <li>Significant infrastructure requirements</li>
+                                <li>High maintenance overhead</li>
+                                <li>Inevitable migration in 5-7 years (+$1M-1.5M)</li>
+                                <li>Limited vendor competition</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="background: #10b981; color: white; padding: 20px; border-radius: 10px; margin-top: 20px; text-align: center;">
+                        <p style="font-size: 1.3em; font-weight: bold;">💰 Choosing Jira saves $2.4M over 5 years</p>
+                        <p style="font-size: 1.1em; margin-top: 10px;">Plus avoids $1M-1.5M migration cost when EWM reaches end-of-life</p>
+                        <p style="font-size: 1.4em; font-weight: bold; margin-top: 10px;">Total 10-Year Savings: $3.4M - $3.9M</p>
+                    </div>
+                </div>
             </div>
-
-            <h2>Implementation Roadmap</h2>
-
-            <div class="info-card">
-                <h4>Phase 1: Foundation (Months 1-3)</h4>
-                <p><strong>Objective:</strong> Establish core Jira infrastructure and integrations</p>
-                <ul>
-                    <li>Configure Jira projects for AIX components</li>
-                    <li>Integrate with Git (Bitbucket or GitHub Enterprise)</li>
-                    <li>Set up custom fields for AIX-specific metadata</li>
-                    <li>Design workflow states matching CMVC processes</li>
-                    <li>Develop RP2 integration architecture</li>
-                </ul>
+            
+            <div class="section">
+                <h2>⚠️ Risk Analysis</h2>
+                
+                <h3 style="color: #10b981; margin-top: 30px;">Jira Migration Risks (Manageable)</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0;">
+                    <div style="background: #d4edda; padding: 20px; border-radius: 10px; border-left: 5px solid #28a745;">
+                        <h4 style="color: #155724;">⚠️ Customization Complexity</h4>
+                        <p><strong>Risk Level: Medium</strong></p>
+                        <p>Requires $450K-625K investment to reach 85% coverage</p>
+                        <p style="margin-top: 10px;"><strong>Mitigation:</strong> Phased approach, pilot program, expert consultants</p>
+                    </div>
+                    <div style="background: #d4edda; padding: 20px; border-radius: 10px; border-left: 5px solid #28a745;">
+                        <h4 style="color: #155724;">✓ Data Migration</h4>
+                        <p><strong>Risk Level: Low</strong></p>
+                        <p>Well-documented process with available tools</p>
+                        <p style="margin-top: 10px;"><strong>Mitigation:</strong> Automated tools, validation, parallel running</p>
+                    </div>
+                    <div style="background: #d4edda; padding: 20px; border-radius: 10px; border-left: 5px solid #28a745;">
+                        <h4 style="color: #155724;">✓ User Adoption</h4>
+                        <p><strong>Risk Level: Low</strong></p>
+                        <p>90% of developers already familiar</p>
+                        <p style="margin-top: 10px;"><strong>Mitigation:</strong> Minimal training, champions program</p>
+                    </div>
+                </div>
+                
+                <h3 style="color: #dc2626; margin-top: 40px;">EWM Migration Risks (High & Unavoidable)</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0;">
+                    <div style="background: #f8d7da; padding: 20px; border-radius: 10px; border-left: 5px solid #dc3545;">
+                        <h4 style="color: #721c24;">🚨 Platform Longevity</h4>
+                        <p><strong>Risk Level: CRITICAL</strong></p>
+                        <p>Will require another migration in 5-7 years</p>
+                        <p style="margin-top: 10px;"><strong>Impact:</strong> INEVITABLE second migration ($1M-1.5M)</p>
+                    </div>
+                    <div style="background: #f8d7da; padding: 20px; border-radius: 10px; border-left: 5px solid #dc3545;">
+                        <h4 style="color: #721c24;">🚨 Talent Availability</h4>
+                        <p><strong>Risk Level: HIGH</strong></p>
+                        <p>Shrinking pool of EWM experts</p>
+                        <p style="margin-top: 10px;"><strong>Impact:</strong> High costs, productivity loss</p>
+                    </div>
+                    <div style="background: #f8d7da; padding: 20px; border-radius: 10px; border-left: 5px solid #dc3545;">
+                        <h4 style="color: #721c24;">🚨 Future Migration Cost</h4>
+                        <p><strong>Risk Level: HIGH</strong></p>
+                        <p>Second migration will cost $1M-1.5M</p>
+                        <p style="margin-top: 10px;"><strong>Impact:</strong> Additional cost + complexity</p>
+                    </div>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%); padding: 30px; border-radius: 15px; border-left: 6px solid #dc3545; margin-top: 30px;">
+                    <h3 style="color: #721c24;">The EWM Migration Trap</h3>
+                    <p style="font-size: 1.2em; margin: 15px 0;"><strong>Migrating to EWM now means migrating TWICE:</strong></p>
+                    <ol style="font-size: 1.1em; margin-left: 30px; line-height: 2;">
+                        <li><strong>Now:</strong> CMVC → EWM ($3.5M over 5 years)</li>
+                        <li><strong>In 5-7 years:</strong> EWM → Something else ($1M-1.5M)</li>
+                        <li><strong>Total Cost:</strong> $4.5M - $5M</li>
+                    </ol>
+                    <p style="font-size: 1.2em; margin: 20px 0 15px 0;"><strong>Migrating to Jira now means migrating ONCE:</strong></p>
+                    <ol style="font-size: 1.1em; margin-left: 30px; line-height: 2;">
+                        <li><strong>Now:</strong> CMVC → Jira ($1.1M over 5 years)</li>
+                        <li><strong>Future:</strong> No migration needed for 10+ years</li>
+                        <li><strong>Total Cost:</strong> $1.1M</li>
+                    </ol>
+                    <p style="font-size: 1.5em; font-weight: bold; color: #b91c1c; margin-top: 30px; text-align: center;">Savings: $3.4M - $3.9M by choosing Jira</p>
+                </div>
             </div>
-
-            <div class="info-card">
-                <h4>Phase 2: Custom Development (Months 4-6)</h4>
-                <p><strong>Objective:</strong> Build AIX-specific capabilities</p>
-                <ul>
-                    <li>Develop level-based build management system</li>
-                    <li>Create RP2 integration connector</li>
-                    <li>Build component hierarchy automation</li>
-                    <li>Implement prerequisite checking logic</li>
-                    <li>Develop custom dashboards and reports</li>
-                </ul>
+            
+            <div class="section">
+                <h2>🗓️ Platform Longevity Timeline</h2>
+                
+                <div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 30px; border-radius: 15px; margin: 20px 0;">
+                    <h3 style="color: #1e3a8a;">Jira: Long-Term Viability (10+ Years)</h3>
+                    <div style="margin-top: 20px;">
+                        <div style="display: flex; margin-bottom: 30px; align-items: start;">
+                            <div style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">2026</div>
+                            <div style="margin-left: 20px; background: white; padding: 20px; border-radius: 10px; flex: 1;">
+                                <h4 style="margin-top: 0;">Migration Start</h4>
+                                <p>Begin CMVC → Jira migration. Initial investment: $500K</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; margin-bottom: 30px; align-items: start;">
+                            <div style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">2027</div>
+                            <div style="margin-left: 20px; background: white; padding: 20px; border-radius: 10px; flex: 1;">
+                                <h4 style="margin-top: 0;">Full Production</h4>
+                                <p>All teams migrated. Continuous improvements and optimizations.</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; margin-bottom: 30px; align-items: start;">
+                            <div style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">2031</div>
+                            <div style="margin-left: 20px; background: white; padding: 20px; border-radius: 10px; flex: 1;">
+                                <h4 style="margin-top: 0;">Mature Platform</h4>
+                                <p>5 years of stable operation. Total cost: $1.1M. Platform still modern and actively developed.</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: start;">
+                            <div style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">2036</div>
+                            <div style="margin-left: 20px; background: white; padding: 20px; border-radius: 10px; flex: 1;">
+                                <h4 style="margin-top: 0;">Still Going Strong</h4>
+                                <p>10+ years on Jira. No migration needed. Continuous innovation from Atlassian.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); padding: 30px; border-radius: 15px; margin: 20px 0;">
+                    <h3 style="color: #dc2626;">EWM: Declining Platform (5-7 Years)</h3>
+                    <div style="margin-top: 20px;">
+                        <div style="display: flex; margin-bottom: 30px; align-items: start;">
+                            <div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">2026</div>
+                            <div style="margin-left: 20px; background: white; padding: 20px; border-radius: 10px; flex: 1;">
+                                <h4 style="margin-top: 0;">Migration Start</h4>
+                                <p>Begin CMVC → EWM migration. Initial investment: $800K</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; margin-bottom: 30px; align-items: start;">
+                            <div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">2029</div>
+                            <div style="margin-left: 20px; background: white; padding: 20px; border-radius: 10px; flex: 1;">
+                                <h4 style="margin-top: 0;">⚠️ Maintenance Mode</h4>
+                                <p>IBM announces EWM entering maintenance mode. No new features.</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; margin-bottom: 30px; align-items: start;">
+                            <div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">2031</div>
+                            <div style="margin-left: 20px; background: white; padding: 20px; border-radius: 10px; flex: 1;">
+                                <h4 style="margin-top: 0;">🚨 End of Life Announced</h4>
+                                <p>Total cost so far: $3.5M. Must plan another migration.</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: start;">
+                            <div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">2033</div>
+                            <div style="margin-left: 20px; background: white; padding: 20px; border-radius: 10px; flex: 1;">
+                                <h4 style="margin-top: 0;">💰 Second Migration</h4>
+                                <p>EWM → New Platform. Additional cost: $1M-1.5M. Total: $4.5M-5M.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <div class="info-card">
-                <h4>Phase 3: Pilot Program (Months 7-9)</h4>
-                <p><strong>Objective:</strong> Validate solution with real AIX team</p>
-                <ul>
-                    <li>Select 2-3 pilot components</li>
-                    <li>Migrate historical data</li>
-                    <li>Train pilot team (50-100 developers)</li>
-                    <li>Run parallel with CMVC</li>
-                    <li>Collect feedback and refine</li>
-                </ul>
+            
+            <div class="section">
+                <h2>📋 AIX's 8 Critical Requirements</h2>
+                <div style="background: #f8fafc; padding: 30px; border-radius: 15px; border-left: 6px solid #3b82f6;">
+                    <p style="font-size: 1.1em; margin-bottom: 20px;">The capability radar chart above shows how each solution addresses AIX's essential needs:</p>
+                    <ol style="margin-left: 30px; font-size: 1.05em; line-height: 2;">
+                        <li><strong>Problem Tracking + Version Control</strong> - Bidirectional traceability for compliance</li>
+                        <li><strong>Level-Based Build Management</strong> - Precise control over build composition</li>
+                        <li><strong>Component Hierarchy + Authority</strong> - Scalable access control for 1000+ developers</li>
+                        <li><strong>Multi-Release Management</strong> - Support concurrent AIX versions (72Z, 73H, 73J, 740)</li>
+                        <li><strong>PTF/APAR Integration (RP2)</strong> - Customer fix delivery and compliance</li>
+                        <li><strong>State Machine Workflows</strong> - Process enforcement and quality gates</li>
+                        <li><strong>Prerequisite/Corequisite Management</strong> - Automated dependency tracking</li>
+                        <li><strong>Reproducible Builds</strong> - Historical build state recreation</li>
+                    </ol>
+                    <div style="background: white; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                        <p style="font-weight: bold; font-size: 1.1em;"><strong>Key Insight:</strong> While EWM scores higher on immediate capability (90%), Jira's 58% coverage increases to 85% with $450K-625K customization investment, while providing superior long-term strategic value.</p>
+                    </div>
+                </div>
             </div>
-
-            <div class="info-card">
-                <h4>Phase 4: Phased Rollout (Months 10-15)</h4>
-                <p><strong>Objective:</strong> Migrate all AIX teams</p>
-                <ul>
-                    <li>Wave 1: 30% of teams (Months 10-11)</li>
-                    <li>Wave 2: 40% of teams (Months 12-13)</li>
-                    <li>Wave 3: 30% of teams (Months 14-15)</li>
-                    <li>Continuous support and optimization</li>
-                    <li>CMVC decommissioning planning</li>
-                </ul>
+            
+            <div class="section">
+                <h2>📋 Comparison Summary</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Factor</th>
+                            <th>Jira (Recommended)</th>
+                            <th>EWM (Not Recommended)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>5-Year TCO</strong></td>
+                            <td>$1.1M</td>
+                            <td>$3.5M</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Platform Longevity</strong></td>
+                            <td>10+ years, continuous innovation</td>
+                            <td>5-7 years until end-of-life</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Talent Availability</strong></td>
+                            <td>90% of developers know it</td>
+                            <td>Shrinking expert pool</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability Coverage</strong></td>
+                            <td>85% (with customization)</td>
+                            <td>90% (but declining platform)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Risk Level</strong></td>
+                            <td>LOW - Manageable risks</td>
+                            <td>HIGH - Platform end-of-life inevitable</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Future Migration</strong></td>
+                            <td>None needed</td>
+                            <td>Required in 5-7 years (+$1M-1.5M)</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-
-            <h2>Conclusion</h2>
-
-            <div class="recommendation-box">
-                <p style="font-size: 1.3em; line-height: 1.8;">
-                    The choice of defect tracking system is a strategic decision that will impact AIX development for the next decade. While EWM offers the highest immediate capability coverage, <strong>Jira emerges as the clear strategic choice</strong> when considering long-term platform viability, total cost of ownership, talent acquisition and retention, developer productivity, and alignment with industry trends and IBM's strategic direction.
-                </p>
-                <p style="font-size: 1.4em; margin-top: 30px; font-weight: 500;">
-                    <strong>The recommendation is clear: Invest in Jira now to build a sustainable, modern, and cost-effective defect tracking foundation for AIX's future.</strong>
-                </p>
-            </div>
-
-            <h2>Next Steps</h2>
-
-            <div class="success-card">
-                <ol style="font-size: 1.1em; line-height: 2;">
-                    <li><strong>Executive Approval</strong> - Present findings to AIX leadership for decision</li>
-                    <li><strong>Budget Allocation</strong> - Secure $500K-600K for Year 1 implementation</li>
-                    <li><strong>Team Formation</strong> - Assemble implementation team (PM, architects, developers)</li>
-                    <li><strong>Vendor Engagement</strong> - Engage Atlassian for enterprise support</li>
-                    <li><strong>Pilot Planning</strong> - Select pilot components and team</li>
-                    <li><strong>Kickoff</strong> - Begin Phase 1 implementation</li>
-                </ol>
-            </div>
-        </div>
-
-        <div class="footer">
-            <p><strong>Document Classification:</strong> Internal Strategic Analysis</p>
-            <p><strong>Version:</strong> 2.0 | <strong>Date:</strong> June 2026 | <strong>Status:</strong> Final Recommendation</p>
         </div>
     </div>
+    
+    <script>
+        // Radar Chart - Capability Coverage
+        const radarCtx = document.getElementById('radarChart');
+        new Chart(radarCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Problem Tracking', 'Build Management', 'Component Hierarchy', 'Multi-Release', 'PTF/APAR', 'Workflows', 'Dependencies', 'Reproducibility'],
+                datasets: [{
+                    label: 'Jira',
+                    data: [3, 2, 3, 4, 2, 5, 2, 2],
+                    backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                    borderColor: 'rgba(59, 130, 246, 1)',
+                    borderWidth: 2
+                }, {
+                    label: 'EWM',
+                    data: [5, 4, 5, 5, 3, 5, 4, 5],
+                    backgroundColor: 'rgba(239, 68, 68, 0.2)',
+                    borderColor: 'rgba(239, 68, 68, 1)',
+                    borderWidth: 2
+                }, {
+                    label: 'CMVC Baseline',
+                    data: [5, 5, 5, 5, 5, 5, 5, 5],
+                    backgroundColor: 'rgba(107, 114, 128, 0.1)',
+                    borderColor: 'rgba(107, 114, 128, 0.5)',
+                    borderWidth: 1,
+                    borderDash: [5, 5]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 5
+                    }
+                }
+            }
+        });
+        
+        // Bar Chart - TCO
+        const costCtx = document.getElementById('costChart');
+        new Chart(costCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5', 'Total'],
+                datasets: [{
+                    label: 'Jira',
+                    data: [500, 150, 150, 150, 150, 1100],
+                    backgroundColor: 'rgba(59, 130, 246, 0.8)'
+                }, {
+                    label: 'EWM',
+                    data: [800, 500, 500, 500, 1200, 3500],
+                    backgroundColor: 'rgba(239, 68, 68, 0.8)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value + 'K';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Horizontal Bar - Strategic Value
+        const valueCtx = document.getElementById('valueChart');
+        new Chart(valueCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Long-Term Viability', 'Innovation Rate', 'Talent Pool', 'Ecosystem', 'Cost Efficiency', 'Dev Experience'],
+                datasets: [{
+                    label: 'Jira',
+                    data: [5, 5, 5, 5, 5, 4],
+                    backgroundColor: 'rgba(59, 130, 246, 0.8)'
+                }, {
+                    label: 'EWM',
+                    data: [2, 2, 2, 2, 2, 2],
+                    backgroundColor: 'rgba(239, 68, 68, 0.8)'
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 5
+                    }
+                }
+            }
+        });
+        
+        // Doughnut Chart - Decision Factors
+        const doughnutCtx = document.getElementById('doughnutChart');
+        new Chart(doughnutCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Cost Savings (30%)', 'Platform Longevity (25%)', 'Talent (20%)', 'Innovation (15%)', 'Experience (10%)'],
+                datasets: [{
+                    data: [30, 25, 20, 15, 10],
+                    backgroundColor: [
+                        'rgba(16, 185, 129, 0.8)',
+                        'rgba(59, 130, 246, 0.8)',
+                        'rgba(139, 92, 246, 0.8)',
+                        'rgba(245, 158, 11, 0.8)',
+                        'rgba(236, 72, 153, 0.8)'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
