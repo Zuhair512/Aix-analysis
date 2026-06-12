@@ -248,7 +248,7 @@
                         <h4 style="font-size: 1em; margin-top: 20px;">Key Characteristics:</h4>
                         <ul>
                             <li>Includes work item tracking</li>
-                            <li>Built-in source control management (Jazz SCM is native, but also integrates with Git, Gerrit, GitLab, GitHub, and Bitbucket)</li>
+                            <li>Built-in source control management (Jazz SCM) with Git integration (supports Git, Gerrit, GitLab, GitHub, and Bitbucket)</li>
                             <li>Integrated build automation</li>
                             <li>End-to-end traceability across lifecycle</li>
                             <li>Designed for complex and regulated engineering environments</li>
@@ -261,7 +261,19 @@
                 <div class="info-box" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 6px solid #f59e0b; margin-top: 30px;">
                     <h3 style="color: #78350f;">⚠️ Critical Distinctions</h3>
                     <p style="font-size: 1.15em; line-height: 1.8; color: #78350f; margin-bottom: 15px;"><strong>Jira and EWM are NOT equivalent tools.</strong> Jira is focused on project tracking and workflow flexibility across diverse use cases (Agile, ITSM, HR, finance), while EWM is a comprehensive engineering lifecycle platform with built-in SCM, build management, and end-to-end traceability capabilities. They serve different organizational needs and complexity levels.</p>
-                    <p style="font-size: 1.15em; line-height: 1.8; color: #78350f;"><strong>EWM's native SCM is Jazz SCM, but it has robust Git integration.</strong> EWM supports Git, Gerrit, GitLab, GitHub, and Bitbucket commit linkages to work items. While Jazz SCM is the native option and behaves differently from Git, organizations can use Git-based workflows with EWM integration.</p>
+                    <p style="font-size: 1.15em; line-height: 1.8; color: #78350f;"><strong>EWM's native SCM is Jazz SCM, but it has robust Git integration.</strong> EWM supports Git, Gerrit, GitLab, GitHub, and Bitbucket commit linkages to work items, making it strategically important for organizations using Git-based workflows. While Jazz SCM is the native option and behaves differently from Git, organizations can leverage Git repositories with full EWM work item integration.</p>
+                </div>
+                
+                <div class="info-box" style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border-left: 6px solid #3b82f6; margin-top: 30px;">
+                    <h3 style="color: #1e3a8a;">🔗 EWM Git Integration: Strategic Advantage</h3>
+                    <p style="font-size: 1.1em; line-height: 1.8; color: #1e3a8a; margin-bottom: 15px;">While EWM's native SCM is Jazz SCM, its <strong>Git integration capabilities are strategically important</strong> for organizations committed to Git-based workflows:</p>
+                    <ul style="margin-left: 30px; line-height: 1.8; color: #1e3a8a;">
+                        <li><strong>Git Repository Support:</strong> Full integration with Git, Gerrit, GitLab, GitHub, and Bitbucket</li>
+                        <li><strong>Commit Linkage:</strong> Link Git commits directly to EWM work items for traceability</li>
+                        <li><strong>Workflow Flexibility:</strong> Use Git for version control while leveraging EWM's lifecycle management</li>
+                        <li><strong>Hybrid Approach:</strong> Organizations can use Git repositories alongside EWM's work item tracking and build automation</li>
+                    </ul>
+                    <p style="font-size: 1.05em; line-height: 1.8; color: #1e3a8a; margin-top: 15px;"><em>This makes EWM viable for teams that want comprehensive lifecycle management without abandoning Git workflows.</em></p>
                 </div>
             </div>
             
@@ -285,7 +297,7 @@
                         <tr>
                             <td><strong>Source Control Management (SCM)</strong></td>
                             <td>Requires integration with external tools (Git, Bitbucket, GitHub, GitLab)</td>
-                            <td>Native Jazz SCM with full integration; also integrates with Git, GitHub, GitLab, Bitbucket, Gerrit</td>
+                            <td>Native Jazz SCM with full integration; robust Git integration supporting Git, GitHub, GitLab, Bitbucket, Gerrit commit linkages</td>
                         </tr>
                         <tr>
                             <td><strong>Build Management</strong></td>
@@ -388,7 +400,7 @@
                         <h4 style="color: #10b981;">EWM Strengths</h4>
                         <ul>
                             <li><strong>Comprehensive platform:</strong> Full lifecycle management in one tool</li>
-                            <li><strong>Built-in Jazz SCM:</strong> Native source control; also integrates with Git, GitHub, GitLab, Bitbucket, Gerrit</li>
+                            <li><strong>Built-in Jazz SCM with Git integration:</strong> Native Jazz SCM plus robust Git integration (Git, GitHub, GitLab, Bitbucket, Gerrit)</li>
                             <li><strong>Strong traceability:</strong> End-to-end requirements → code → test → deployment</li>
                             <li><strong>Compliance ready:</strong> Built-in governance and compliance features</li>
                             <li><strong>Regulated industries:</strong> Proven in automotive, aerospace, medical devices, defense</li>
@@ -398,7 +410,7 @@
                         
                         <h4 style="color: #dc2626; margin-top: 20px;">EWM Limitations</h4>
                         <ul>
-                            <li>Native Jazz SCM behaves differently from Git (though Git integration is available)</li>
+                            <li>Native Jazz SCM behaves differently from Git (though robust Git integration is available for Git-based workflows)</li>
                             <li>More difficult initial setup and configuration</li>
                             <li>Can support non-engineering workflows but not optimized for them</li>
                             <li>Smaller extension ecosystem compared to Jira</li>
@@ -413,8 +425,8 @@
                 <div class="info-box">
                     <h3>Jira Pricing Model</h3>
                     <ul style="margin-left: 30px; line-height: 1.8;">
-                        <li><strong>Jira Cloud:</strong> Subscription-based per user. As of October 2025: Standard is $8.15/user/month (annual), Premium is $16/user/month (annual). Pricing subject to change - see <a href="https://www.atlassian.com/software/jira/pricing" target="_blank" style="color: #3b82f6;">Atlassian's official pricing page</a>.</li>
-                        <li><strong>Jira Data Center:</strong> Annual user tier licensing starting at $51,000/year for up to 500 users, with the 1,000-user tier at $87,000/year. Plus infrastructure costs.</li>
+                        <li><strong>Jira Cloud:</strong> Subscription-based per user. As of October 2025: Standard is $8.15/user/month (annual billing), Premium is $16/user/month (annual billing). Pricing subject to change - see <a href="https://www.atlassian.com/software/jira/pricing" target="_blank" style="color: #3b82f6;">Atlassian's official pricing page</a>.</li>
+                        <li><strong>Jira Data Center:</strong> Annual user tier licensing starting at $51,000/year for up to 500 users, with the 1,000-user tier at $87,000/year. Plus infrastructure costs. <strong>Note: Atlassian is discontinuing Jira Data Center support by 2029, with first phase beginning March 2026.</strong></li>
                         <li>Costs increase with plugins, integrations, and customizations</li>
                         <li>Flexible scaling options</li>
                     </ul>
@@ -428,8 +440,9 @@
                     </ul>
                     
                     <div style="background: #fee2e2; padding: 20px; border-radius: 10px; margin-top: 25px; border-left: 4px solid #dc2626;">
-                        <h4 style="color: #991b1b; margin-top: 0;">⚠️ Important: Jira Data Center End-of-Life</h4>
-                        <p style="color: #991b1b; line-height: 1.8;"><strong>Atlassian is discontinuing Jira Data Center support by 2029, with the first phase of changes beginning March 2026.</strong> This is a critical consideration for any organization evaluating long-term platform commitments. Organizations choosing Jira Data Center should plan for eventual migration to Jira Cloud or alternative solutions.</p>
+                        <h4 style="color: #991b1b; margin-top: 0;">⚠️ Critical: Jira Data Center Sunset</h4>
+                        <p style="color: #991b1b; line-height: 1.8; margin-bottom: 15px;"><strong>Atlassian is discontinuing Jira Data Center with support ending by 2029. The first phase of changes begins March 2026.</strong> This is a critical consideration for any organization evaluating long-term platform commitments.</p>
+                        <p style="color: #991b1b; line-height: 1.8;"><strong>Impact:</strong> Organizations choosing Jira Data Center today must plan for eventual migration to Jira Cloud or alternative solutions within the next few years. This significantly affects long-term platform strategy and total cost of ownership calculations.</p>
                     </div>
                     
                     <div style="background: #fef3c7; padding: 20px; border-radius: 10px; margin-top: 25px; border-left: 4px solid #f59e0b;">
@@ -453,7 +466,7 @@
                 
                 <div class="info-box">
                     <h3>Deployment Options Comparison</h3>
-                    <p style="margin-bottom: 15px;"><strong>Note:</strong> Jira Server was discontinued on February 15, 2024. The two current deployment options are Cloud and Data Center only.</p>
+                    <p style="margin-bottom: 15px;"><strong>Note:</strong> Jira Server ended support on February 15, 2024. Only two deployment options exist now: <strong>Jira Cloud</strong> and <strong>Jira Data Center</strong>.</p>
                     
                     <div class="comparison-grid" style="margin-top: 20px;">
                         <div style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #3b82f6;">
@@ -482,6 +495,32 @@
                                 <li><strong>Compliance:</strong> Better for strict regulatory requirements</li>
                             </ul>
                         </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>🤖 Jira AI Features: Atlassian Intelligence</h2>
+                
+                <div class="info-box" style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); border-left: 6px solid #9333ea;">
+                    <h3 style="color: #581c87;">Atlassian Intelligence & Rovo</h3>
+                    <p style="font-size: 1.1em; line-height: 1.8; color: #581c87; margin-bottom: 15px;">Atlassian has introduced <strong>Atlassian Intelligence</strong> and <strong>Rovo</strong>, AI-powered features that represent a significant differentiator in the platform landscape:</p>
+                    
+                    <h4 style="color: #581c87; margin-top: 20px;">Key AI Capabilities:</h4>
+                    <ul style="margin-left: 30px; line-height: 1.8; color: #581c87;">
+                        <li><strong>AI-Powered Search:</strong> Intelligent search across Jira, Confluence, and connected tools</li>
+                        <li><strong>Automated Summaries:</strong> AI-generated summaries of issues, comments, and project updates</li>
+                        <li><strong>Smart Suggestions:</strong> Context-aware recommendations for issue fields, assignees, and workflows</li>
+                        <li><strong>Natural Language Queries:</strong> Ask questions in plain language to find information across your workspace</li>
+                        <li><strong>Content Generation:</strong> AI assistance for writing issue descriptions, acceptance criteria, and documentation</li>
+                        <li><strong>Rovo Agents:</strong> Customizable AI agents that can automate workflows and answer team questions</li>
+                    </ul>
+                    
+                    <h4 style="color: #581c87; margin-top: 20px;">Strategic Advantage:</h4>
+                    <p style="font-size: 1.05em; line-height: 1.8; color: #581c87; margin-top: 15px;">These AI features are <strong>currently available in Jira Cloud</strong> and represent a significant investment by Atlassian in next-generation capabilities. Organizations prioritizing AI-assisted workflows and knowledge management should consider this a key differentiator. EWM does not currently offer comparable AI-powered features.</p>
+                    
+                    <div style="background: #fef3c7; padding: 15px; border-radius: 8px; margin-top: 20px; border-left: 4px solid #f59e0b;">
+                        <p style="color: #78350f; line-height: 1.8; margin: 0;"><strong>Note:</strong> Atlassian Intelligence features are evolving rapidly. Check Atlassian's documentation for the latest capabilities and availability across different Jira deployment options.</p>
                     </div>
                 </div>
             </div>
