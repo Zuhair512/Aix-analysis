@@ -235,7 +235,7 @@
                             <li>Highly extensible via plugins and integrations</li>
                             <li>Widely adopted across software development and business teams</li>
                             <li>Flexible and customizable workflows</li>
-                            <li>Strong community and marketplace ecosystem</li>
+                            <li>Large marketplace ecosystem (800+ apps and plugins)</li>
                             <li>Enterprise-grade plugins (Xray, Zephyr, ScriptRunner) widely used</li>
                             <li>Jira + GitHub/GitLab/Bitbucket is a modern DevOps standard</li>
                         </ul>
@@ -248,7 +248,7 @@
                         <h4 style="font-size: 1em; margin-top: 20px;">Key Characteristics:</h4>
                         <ul>
                             <li>Includes work item tracking</li>
-                            <li>Built-in source control management (Jazz SCM - NOT Git)</li>
+                            <li>Built-in source control management (Jazz SCM is native, but also integrates with Git, Gerrit, GitLab, GitHub, and Bitbucket)</li>
                             <li>Integrated build automation</li>
                             <li>End-to-end traceability across lifecycle</li>
                             <li>Designed for complex and regulated engineering environments</li>
@@ -261,7 +261,7 @@
                 <div class="info-box" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 6px solid #f59e0b; margin-top: 30px;">
                     <h3 style="color: #78350f;">⚠️ Critical Distinctions</h3>
                     <p style="font-size: 1.15em; line-height: 1.8; color: #78350f; margin-bottom: 15px;"><strong>Jira and EWM are NOT equivalent tools.</strong> Jira is focused on project tracking and workflow flexibility across diverse use cases (Agile, ITSM, HR, finance), while EWM is a comprehensive engineering lifecycle platform with built-in SCM, build management, and end-to-end traceability capabilities. They serve different organizational needs and complexity levels.</p>
-                    <p style="font-size: 1.15em; line-height: 1.8; color: #78350f;"><strong>EWM SCM is Jazz SCM, NOT Git.</strong> Jazz SCM behaves very differently from Git and can significantly impact DevOps pipelines and integration strategies. This is a critical consideration for organizations with Git-based workflows.</p>
+                    <p style="font-size: 1.15em; line-height: 1.8; color: #78350f;"><strong>EWM's native SCM is Jazz SCM, but it has robust Git integration.</strong> EWM supports Git, Gerrit, GitLab, GitHub, and Bitbucket commit linkages to work items. While Jazz SCM is the native option and behaves differently from Git, organizations can use Git-based workflows with EWM integration.</p>
                 </div>
             </div>
             
@@ -285,7 +285,7 @@
                         <tr>
                             <td><strong>Source Control Management (SCM)</strong></td>
                             <td>Requires integration with external tools (Git, Bitbucket, GitHub, GitLab)</td>
-                            <td>Built-in Jazz SCM (NOT Git) with full integration</td>
+                            <td>Native Jazz SCM with full integration; also integrates with Git, GitHub, GitLab, Bitbucket, Gerrit</td>
                         </tr>
                         <tr>
                             <td><strong>Build Management</strong></td>
@@ -329,7 +329,7 @@
                         </tr>
                         <tr>
                             <td><strong>Extensibility</strong></td>
-                            <td>Large marketplace with thousands of plugins</td>
+                            <td>Large marketplace with 800+ apps and plugins</td>
                             <td>More limited extension ecosystem</td>
                         </tr>
                     </tbody>
@@ -369,7 +369,7 @@
                             <li><strong>Flexibility:</strong> Highly customizable workflows and processes</li>
                             <li><strong>Modern DevOps:</strong> Jira + GitHub/GitLab/Bitbucket is an industry-standard DevOps stack</li>
                             <li><strong>Enterprise plugins:</strong> Xray, Zephyr, ScriptRunner are enterprise-grade and widely adopted</li>
-                            <li><strong>Large ecosystem:</strong> Extensive marketplace with thousands of plugins</li>
+                            <li><strong>Large ecosystem:</strong> Extensive marketplace with 800+ apps and plugins</li>
                             <li><strong>Wide adoption:</strong> Commonly used across the industry</li>
                             <li><strong>Quick setup (Cloud):</strong> Jira Cloud offers faster initial implementation; Jira Data Center requires more setup</li>
                         </ul>
@@ -388,7 +388,7 @@
                         <h4 style="color: #10b981;">EWM Strengths</h4>
                         <ul>
                             <li><strong>Comprehensive platform:</strong> Full lifecycle management in one tool</li>
-                            <li><strong>Built-in Jazz SCM:</strong> Native source control integration (note: NOT Git)</li>
+                            <li><strong>Built-in Jazz SCM:</strong> Native source control; also integrates with Git, GitHub, GitLab, Bitbucket, Gerrit</li>
                             <li><strong>Strong traceability:</strong> End-to-end requirements → code → test → deployment</li>
                             <li><strong>Compliance ready:</strong> Built-in governance and compliance features</li>
                             <li><strong>Regulated industries:</strong> Proven in automotive, aerospace, medical devices, defense</li>
@@ -398,7 +398,7 @@
                         
                         <h4 style="color: #dc2626; margin-top: 20px;">EWM Limitations</h4>
                         <ul>
-                            <li>Jazz SCM is NOT Git - impacts DevOps pipelines and integration strategies</li>
+                            <li>Native Jazz SCM behaves differently from Git (though Git integration is available)</li>
                             <li>More difficult initial setup and configuration</li>
                             <li>Can support non-engineering workflows but not optimized for them</li>
                             <li>Smaller extension ecosystem compared to Jira</li>
@@ -413,8 +413,8 @@
                 <div class="info-box">
                     <h3>Jira Pricing Model</h3>
                     <ul style="margin-left: 30px; line-height: 1.8;">
-                        <li>Typically priced per user (cloud or data center deployment)</li>
-                        <li>Base costs are generally lower for small to medium teams</li>
+                        <li><strong>Jira Cloud:</strong> Subscription-based per user. As of October 2025: Standard is $8.15/user/month (annual), Premium is $16/user/month (annual). Pricing subject to change - see <a href="https://www.atlassian.com/software/jira/pricing" target="_blank" style="color: #3b82f6;">Atlassian's official pricing page</a>.</li>
+                        <li><strong>Jira Data Center:</strong> Annual user tier licensing starting at $51,000/year for up to 500 users, with the 1,000-user tier at $87,000/year. Plus infrastructure costs.</li>
                         <li>Costs increase with plugins, integrations, and customizations</li>
                         <li>Flexible scaling options</li>
                     </ul>
@@ -426,6 +426,11 @@
                         <li>Includes more built-in capabilities (Jazz SCM, build, traceability)</li>
                         <li>May reduce need for additional tool licenses (depends on whether organization already uses Git, Jenkins, Artifactory, SonarQube, etc.)</li>
                     </ul>
+                    
+                    <div style="background: #fee2e2; padding: 20px; border-radius: 10px; margin-top: 25px; border-left: 4px solid #dc2626;">
+                        <h4 style="color: #991b1b; margin-top: 0;">⚠️ Important: Jira Data Center End-of-Life</h4>
+                        <p style="color: #991b1b; line-height: 1.8;"><strong>Atlassian is discontinuing Jira Data Center support by 2029, with the first phase of changes beginning March 2026.</strong> This is a critical consideration for any organization evaluating long-term platform commitments. Organizations choosing Jira Data Center should plan for eventual migration to Jira Cloud or alternative solutions.</p>
+                    </div>
                     
                     <div style="background: #fef3c7; padding: 20px; border-radius: 10px; margin-top: 25px; border-left: 4px solid #f59e0b;">
                         <h4 style="color: #78350f; margin-top: 0;">⚠️ Important Note on Costs</h4>
@@ -444,11 +449,11 @@
             </div>
             
             <div class="section">
-                <h2>☁️ Jira Cloud vs Data Center</h2>
+                <h2>☁️ Jira Deployment Options: Cloud vs Data Center</h2>
                 
                 <div class="info-box">
                     <h3>Deployment Options Comparison</h3>
-                    <p style="margin-bottom: 15px;">Jira offers two primary deployment models with significant differences:</p>
+                    <p style="margin-bottom: 15px;"><strong>Note:</strong> Jira Server was discontinued on February 15, 2024. The two current deployment options are Cloud and Data Center only.</p>
                     
                     <div class="comparison-grid" style="margin-top: 20px;">
                         <div style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #3b82f6;">
