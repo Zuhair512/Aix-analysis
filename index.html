@@ -204,20 +204,6 @@
             <p>Comparative Analysis: Atlassian Jira vs IBM Engineering Workflow Management (EWM)</p>
         </div>
         
-        <div class="disclaimer">
-            <h3>⚠️ Important Disclaimer</h3>
-            <p style="margin-bottom: 15px;"><strong>This analysis is based on general industry characteristics and publicly available information.</strong></p>
-            <p style="margin-bottom: 10px;">Platform suitability depends on:</p>
-            <ul>
-                <li>Organizational scale and complexity</li>
-                <li>Integration requirements</li>
-                <li>Regulatory and compliance constraints</li>
-                <li>Engineering workflow complexity</li>
-                <li>Team size and expertise</li>
-            </ul>
-            <p style="margin-top: 15px; font-weight: bold;">This is not a one-size-fits-all recommendation. Actual implementation costs, timelines, and outcomes will vary based on specific organizational needs.</p>
-        </div>
-        
         <div class="content">
             <div class="section">
                 <h2>📋 Project Context</h2>
@@ -227,7 +213,7 @@
                     
                     <h4 style="margin-top: 20px;">Platforms Evaluated:</h4>
                     <ul style="margin-left: 30px; line-height: 1.8;">
-                        <li><strong>Atlassian Jira</strong> - Agile project and issue tracking platform</li>
+                        <li><strong>Atlassian Jira</strong> - Project and issue tracking platform supporting Agile, ITSM, HR, finance, and general workflow management</li>
                         <li><strong>IBM Engineering Workflow Management (EWM)</strong> - Full engineering lifecycle management platform</li>
                     </ul>
                 </div>
@@ -239,16 +225,19 @@
                 <div class="comparison-grid">
                     <div class="tool-card">
                         <h4 style="color: #3b82f6;">Atlassian Jira</h4>
-                        <p style="margin: 15px 0;"><strong>Type:</strong> Agile project and issue tracking platform</p>
-                        <p style="margin-bottom: 15px;"><strong>Primary Focus:</strong> Workflow management and team collaboration</p>
+                        <p style="margin: 15px 0;"><strong>Type:</strong> Project and issue tracking platform</p>
+                        <p style="margin-bottom: 15px;"><strong>Primary Focus:</strong> Workflow management and team collaboration across diverse use cases</p>
                         <h4 style="font-size: 1em; margin-top: 20px;">Key Characteristics:</h4>
                         <ul>
                             <li>Designed for workflow management and team collaboration</li>
-                            <li>Supports Scrum and Kanban methodologies</li>
+                            <li>Supports Scrum and Kanban methodologies (Agile)</li>
+                            <li>Supports non-agile workflows: ITSM, HR, finance, general workflow management</li>
                             <li>Highly extensible via plugins and integrations</li>
-                            <li>Widely adopted across software development teams</li>
+                            <li>Widely adopted across software development and business teams</li>
                             <li>Flexible and customizable workflows</li>
                             <li>Strong community and marketplace ecosystem</li>
+                            <li>Enterprise-grade plugins (Xray, Zephyr, ScriptRunner) widely used</li>
+                            <li>Jira + GitHub/GitLab/Bitbucket is a modern DevOps standard</li>
                         </ul>
                     </div>
                     
@@ -259,18 +248,20 @@
                         <h4 style="font-size: 1em; margin-top: 20px;">Key Characteristics:</h4>
                         <ul>
                             <li>Includes work item tracking</li>
-                            <li>Built-in source control management (SCM)</li>
+                            <li>Built-in source control management (Jazz SCM - NOT Git)</li>
                             <li>Integrated build automation</li>
                             <li>End-to-end traceability across lifecycle</li>
                             <li>Designed for complex and regulated engineering environments</li>
                             <li>Supports planning → development → testing → delivery</li>
+                            <li>Used in regulated industries: automotive, aerospace, medical devices, defense</li>
                         </ul>
                     </div>
                 </div>
                 
                 <div class="info-box" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 6px solid #f59e0b; margin-top: 30px;">
-                    <h3 style="color: #78350f;">⚠️ Critical Distinction</h3>
-                    <p style="font-size: 1.15em; line-height: 1.8; color: #78350f;"><strong>Jira and EWM are NOT equivalent tools.</strong> Jira is focused on project tracking and workflow flexibility, while EWM is a comprehensive engineering lifecycle platform with built-in SCM, build management, and traceability capabilities. They serve different organizational needs and complexity levels.</p>
+                    <h3 style="color: #78350f;">⚠️ Critical Distinctions</h3>
+                    <p style="font-size: 1.15em; line-height: 1.8; color: #78350f; margin-bottom: 15px;"><strong>Jira and EWM are NOT equivalent tools.</strong> Jira is focused on project tracking and workflow flexibility across diverse use cases (Agile, ITSM, HR, finance), while EWM is a comprehensive engineering lifecycle platform with built-in SCM, build management, and end-to-end traceability capabilities. They serve different organizational needs and complexity levels.</p>
+                    <p style="font-size: 1.15em; line-height: 1.8; color: #78350f;"><strong>EWM SCM is Jazz SCM, NOT Git.</strong> Jazz SCM behaves very differently from Git and can significantly impact DevOps pipelines and integration strategies. This is a critical consideration for organizations with Git-based workflows.</p>
                 </div>
             </div>
             
@@ -293,8 +284,8 @@
                         </tr>
                         <tr>
                             <td><strong>Source Control Management (SCM)</strong></td>
-                            <td>Requires integration with external tools (Git, Bitbucket, etc.)</td>
-                            <td>Built-in native SCM with full integration</td>
+                            <td>Requires integration with external tools (Git, Bitbucket, GitHub, GitLab)</td>
+                            <td>Built-in Jazz SCM (NOT Git) with full integration</td>
                         </tr>
                         <tr>
                             <td><strong>Build Management</strong></td>
@@ -302,9 +293,9 @@
                             <td>Integrated build automation and management</td>
                         </tr>
                         <tr>
-                            <td><strong>Traceability</strong></td>
+                            <td><strong>End-to-End Traceability</strong></td>
                             <td>Limited native traceability; requires plugins and customization</td>
-                            <td>Strong end-to-end traceability (requirements → code → test)</td>
+                            <td>Strong built-in traceability (requirements → code → test → deployment)</td>
                         </tr>
                         <tr>
                             <td><strong>Workflow Customization</strong></td>
@@ -332,9 +323,9 @@
                             <td>Strong support with lifecycle integration</td>
                         </tr>
                         <tr>
-                            <td><strong>Ease of Use</strong></td>
-                            <td>Intuitive interface, easy to learn</td>
-                            <td>Steeper learning curve due to comprehensive features</td>
+                            <td><strong>Learning Curve & Adoption</strong></td>
+                            <td>Intuitive interface, minimal training required, quick team adoption</td>
+                            <td>Steeper learning curve, requires specialized training and expertise</td>
                         </tr>
                         <tr>
                             <td><strong>Extensibility</strong></td>
@@ -374,18 +365,19 @@
                     <div class="tool-card" style="border-left: 4px solid #10b981;">
                         <h4 style="color: #10b981;">Jira Strengths</h4>
                         <ul>
-                            <li><strong>Easy adoption:</strong> Intuitive interface with minimal learning curve</li>
+                            <li><strong>Versatile workflows:</strong> Supports Agile, ITSM, HR, finance, and general workflow management</li>
                             <li><strong>Flexibility:</strong> Highly customizable workflows and processes</li>
-                            <li><strong>Agile focus:</strong> Excellent support for modern agile methodologies</li>
+                            <li><strong>Modern DevOps:</strong> Jira + GitHub/GitLab/Bitbucket is an industry-standard DevOps stack</li>
+                            <li><strong>Enterprise plugins:</strong> Xray, Zephyr, ScriptRunner are enterprise-grade and widely adopted</li>
                             <li><strong>Large ecosystem:</strong> Extensive marketplace with thousands of plugins</li>
                             <li><strong>Wide adoption:</strong> Commonly used across the industry</li>
-                            <li><strong>Quick setup:</strong> Faster initial implementation</li>
+                            <li><strong>Quick setup (Cloud):</strong> Jira Cloud offers faster initial implementation; Jira Data Center requires more setup</li>
                         </ul>
                         
                         <h4 style="color: #dc2626; margin-top: 20px;">Jira Limitations</h4>
                         <ul>
                             <li>Requires plugins for advanced engineering workflows</li>
-                            <li>Limited native traceability compared to EWM</li>
+                            <li>Limited native end-to-end traceability compared to EWM</li>
                             <li>No built-in source control or build management</li>
                             <li>May require significant customization for complex engineering needs</li>
                             <li>Integration complexity increases with scale</li>
@@ -396,19 +388,19 @@
                         <h4 style="color: #10b981;">EWM Strengths</h4>
                         <ul>
                             <li><strong>Comprehensive platform:</strong> Full lifecycle management in one tool</li>
-                            <li><strong>Built-in SCM:</strong> Native source control integration</li>
-                            <li><strong>Strong traceability:</strong> End-to-end requirements to code to test</li>
+                            <li><strong>Built-in Jazz SCM:</strong> Native source control integration (note: NOT Git)</li>
+                            <li><strong>Strong traceability:</strong> End-to-end requirements → code → test → deployment</li>
                             <li><strong>Compliance ready:</strong> Built-in governance and compliance features</li>
+                            <li><strong>Regulated industries:</strong> Proven in automotive, aerospace, medical devices, defense</li>
                             <li><strong>Integrated builds:</strong> Native build automation and management</li>
                             <li><strong>Complex workflows:</strong> Designed for sophisticated engineering processes</li>
                         </ul>
                         
                         <h4 style="color: #dc2626; margin-top: 20px;">EWM Limitations</h4>
                         <ul>
-                            <li>Higher complexity and learning curve</li>
+                            <li>Jazz SCM is NOT Git - impacts DevOps pipelines and integration strategies</li>
                             <li>More difficult initial setup and configuration</li>
-                            <li>Requires more specialized expertise</li>
-                            <li>Less flexible for non-engineering workflows</li>
+                            <li>Can support non-engineering workflows but not optimized for them</li>
                             <li>Smaller extension ecosystem compared to Jira</li>
                         </ul>
                     </div>
@@ -431,8 +423,8 @@
                     <ul style="margin-left: 30px; line-height: 1.8;">
                         <li>Enterprise licensing with custom pricing</li>
                         <li>Higher upfront and implementation costs</li>
-                        <li>Includes more built-in capabilities (SCM, build, traceability)</li>
-                        <li>May reduce need for additional tool licenses</li>
+                        <li>Includes more built-in capabilities (Jazz SCM, build, traceability)</li>
+                        <li>May reduce need for additional tool licenses (depends on whether organization already uses Git, Jenkins, Artifactory, SonarQube, etc.)</li>
                     </ul>
                     
                     <div style="background: #fef3c7; padding: 20px; border-radius: 10px; margin-top: 25px; border-left: 4px solid #f59e0b;">
@@ -447,6 +439,44 @@
                             <li>Support and maintenance requirements</li>
                         </ul>
                         <p style="color: #78350f; margin-top: 15px; font-weight: bold;">Cost comparisons should be based on detailed analysis of your specific requirements, not generalized estimates.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>☁️ Jira Cloud vs Data Center</h2>
+                
+                <div class="info-box">
+                    <h3>Deployment Options Comparison</h3>
+                    <p style="margin-bottom: 15px;">Jira offers two primary deployment models with significant differences:</p>
+                    
+                    <div class="comparison-grid" style="margin-top: 20px;">
+                        <div style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #3b82f6;">
+                            <h4 style="color: #3b82f6;">Jira Cloud</h4>
+                            <ul style="margin-left: 20px; line-height: 1.8;">
+                                <li><strong>Quick setup:</strong> Faster initial implementation and deployment</li>
+                                <li><strong>Automatic updates:</strong> Managed by Atlassian</li>
+                                <li><strong>Scalability:</strong> Elastic scaling managed by Atlassian</li>
+                                <li><strong>Data residency:</strong> Limited control over data location</li>
+                                <li><strong>Plugin availability:</strong> Cloud-compatible apps only</li>
+                                <li><strong>Cost model:</strong> Subscription-based per user</li>
+                                <li><strong>Performance:</strong> Dependent on internet connectivity</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #dc2626;">
+                            <h4 style="color: #dc2626;">Jira Data Center</h4>
+                            <ul style="margin-left: 20px; line-height: 1.8;">
+                                <li><strong>Setup complexity:</strong> Requires more infrastructure planning and configuration</li>
+                                <li><strong>Manual updates:</strong> Controlled by organization</li>
+                                <li><strong>Scalability:</strong> Self-managed clustering and load balancing</li>
+                                <li><strong>Data residency:</strong> Full control over data location and compliance</li>
+                                <li><strong>Plugin availability:</strong> Access to all Data Center and Server apps</li>
+                                <li><strong>Cost model:</strong> License-based with infrastructure costs</li>
+                                <li><strong>Performance:</strong> Optimized for internal network performance</li>
+                                <li><strong>Compliance:</strong> Better for strict regulatory requirements</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -521,6 +551,7 @@
                     <h3 style="color: #78350f;">Phase 3: Pilot & Validation</h3>
                     <ul style="margin-left: 30px; line-height: 1.8;">
                         <li>Pilot team onboarding and training</li>
+                        <li>Data mapping and migration strategy development</li>
                         <li>Data migration for pilot projects</li>
                         <li>Parallel running with existing system</li>
                         <li>Feedback collection and refinement</li>
@@ -533,7 +564,7 @@
                     <ul style="margin-left: 30px; line-height: 1.8;">
                         <li>Phased team migration</li>
                         <li>Comprehensive training program</li>
-                        <li>Full data migration</li>
+                        <li>Full data migration execution (based on Phase 3 strategy)</li>
                         <li>Change management and support</li>
                         <li>Legacy system decommissioning</li>
                     </ul>
